@@ -1,0 +1,47 @@
+#There are a lot of ways we could do this problem. Some are
+#extremely complicated. One, however, is very easy.
+#
+#To write this easy solution, we have to understand: once
+#we find a *single* invalid character, we can go ahead and
+#quit searching and return False. It only takes one invalid
+#character to invalidate the string.
+#
+#That means also that if we search to the end of the string
+#and find *no* invalid characters, then we can return True.
+#If we finish searching and the function hasn't ended, then
+#no invalid characters were found.
+#
+#So, we start by defining the function:
+
+def is_valid(a_string, valid_characters):
+    
+    #Then we loop through each character in the string:
+    for character in a_string:
+        
+        #And check to see if it's in the string of valid
+        #characters. If it's not...
+        if not character in valid_characters:
+            
+            #Then we're done! We go ahead and return
+            #False right here and now.
+            return False
+        
+    #Then if that loop runs to completion, that means that
+    #no invalid characters were ever found. If that's the
+    #case, the string is valid, and we can return that:
+    return True
+
+    #Note that line 32 is *not* indented under the for loop.
+    #It's only indented under the function. That means this
+    #line will only be reached if the loop finishes running,
+    #which will only happen if line 27 never runs, which
+    #will only happen if every character is valid.
+    
+    
+sample_valid_string = "1234-5678-9011-1111"
+sample_invalid_string = "1234!5678.9011?1111"
+valid_characters = "0123456789-"
+
+print(is_valid(sample_valid_string, valid_characters))
+print(is_valid(sample_invalid_string, valid_characters))
+ 
